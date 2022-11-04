@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom' 
+import TaskForm from './components/TaskForm'
+import TaskList from './components/TaskList'
+import Menu from './components/Navbar'
 
-function App() {
+import { Container } from '@mui/material'
+
+
+export default function app() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello world whit React and test with heroku 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <BrowserRouter>
+        <Menu/>
+      <Container>
+        <Routes>
+          <Route path='/' element={<TaskList />} />
+          <Route path='/tasks/new' element={<TaskForm />} />
+          <Route path='/tasks/:id/edit' element={<TaskForm />} />
+    </Routes>
+    </Container>
+    </BrowserRouter >
+  )
 
-export default App;
+}
